@@ -1,10 +1,11 @@
-import { Darker_Grotesque, Inter as FontSans } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
 import { dark } from "@clerk/themes";
 
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
+import Provider from "./Provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -39,7 +40,9 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
-          {children}
+          <Provider>
+            {children}
+          </Provider>
         </body>
       </html>
     </ClerkProvider>
