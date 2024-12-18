@@ -2,7 +2,6 @@
 
 import { nanoid } from 'nanoid';
 import { liveblocks } from '../liveblocks';
-import { revalidatePath } from 'next/cache';
 import { parseStringify } from '../utils';
 
 export const createDocument = async ({userId,email}: CreateDocumentParams) => {
@@ -25,7 +24,8 @@ export const createDocument = async ({userId,email}: CreateDocumentParams) => {
         defaultAccesses:[]
     })
 
-    revalidatePath('/')
+    // console.log(process.env.LIVEBLOCKS_SECRET)
+    // console.log("metadata:",metadata,"usersAccesses:",usersAccesses, "room:",room)
 
     return parseStringify(room);
  } catch (error) {

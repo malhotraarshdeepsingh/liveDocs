@@ -1,10 +1,16 @@
 import CollabarativeRoom from "@/components/CollabarativeRoom";
+interface DocumentProps {
+  params: { id: string }; // Access the 'id' from dynamic route
+}
 
-function Document() {
+function Document({ params }: DocumentProps) {
+  const { id } = params;
+  console.log(id);
+  
   return (
-    <div>
-      <CollabarativeRoom/>
-    </div>
+    <main className="flex w-full flex-col items-center">
+      <CollabarativeRoom room={id}/>
+    </main>
   );
 }
 

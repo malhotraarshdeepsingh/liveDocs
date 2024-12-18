@@ -5,25 +5,27 @@ import Header from "./Header";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { Editor } from "./editor/Editor";
 
-const CollabarativeRoom = () => {
+interface RoomProps {
+  room: string; // Room ID passed as a prop
+}
+
+const CollabarativeRoom = ({ room }: RoomProps) => {
   return (
-    <div>
-      <RoomProvider id="my-room">
-        <ClientSideSuspense fallback={<div>Loading…</div>}>
-          <div className="collabrative-room">
-            <Header>
-              <SignedOut>
-                <SignInButton />
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </Header>
-            <Editor />
-          </div>
-        </ClientSideSuspense>
-      </RoomProvider>
-    </div>
+    <RoomProvider id={room}>
+      <ClientSideSuspense fallback={<div>Loading…</div>}>
+        <div className="collabrative-room">
+          <Header>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </Header>
+          <Editor />
+        </div>
+      </ClientSideSuspense>
+    </RoomProvider>
   );
 };
 
